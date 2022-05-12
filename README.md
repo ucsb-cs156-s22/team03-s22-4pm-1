@@ -1,4 +1,4 @@
-# STARTER-team03
+# team03-s22-4pm-1
 
 [![codecov](https://codecov.io/gh/ucsb-cs156-s22/team03-s22-4pm-1/branch/main/graph/badge.svg?token=9oSIt7UbAM)](https://codecov.io/gh/ucsb-cs156-s22/team03-s22-4pm-1)
 
