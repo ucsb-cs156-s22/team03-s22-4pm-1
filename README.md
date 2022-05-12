@@ -4,12 +4,10 @@
 
 * Production Deployment:  <https://s22-4pm-1-team02.herokuapp.com/>
 
-TODO: Add correct links to the -docs and -docs qa GitHub pages sites
 
 * Storybook (production): <https://ucsb-cs156-s22.github.io/team03-s22-4pm-1-docs>
 * Storybook (development/qa): <https://ucsb-cs156-s22.github.io/team03-s22-4pm-1-docs-qa>
 
-TODO: Leave the results of the TODOS, but remove all of the TODO instructions from the readme.
 
 # Setup before running application
 
