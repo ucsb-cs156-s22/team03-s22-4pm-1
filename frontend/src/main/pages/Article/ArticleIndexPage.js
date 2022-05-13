@@ -17,13 +17,12 @@ export default function ArticleIndexPage() {
             { method: "GET", url: "/api/article/all" },
       []
     );
+    
   return (
     <BasicLayout>
       <div className="pt-2">
         <h1>Article</h1>
-        <p>
         <ArticleTable article={article} currentUser={currentUser} />
-        </p>
       </div>
     </BasicLayout>
   )
