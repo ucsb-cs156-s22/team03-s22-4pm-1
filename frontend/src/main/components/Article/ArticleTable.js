@@ -45,15 +45,15 @@ export default function ArticleTable({ article, _currentUser }) {
         },
         {
             Header: 'URL',
-            id: 'url', 
+            accessor: 'url', 
         },
         {
             Header: 'Explanation',
-            id: 'explanation', // needed for tests
+            accessor: 'explanation', 
         },
         {
             Header: 'Email',
-            id: 'email', // needed for tests
+            accessor: 'email', 
         },
         {
             Header: 'Date Added',
