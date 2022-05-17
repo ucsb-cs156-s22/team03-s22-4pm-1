@@ -15,7 +15,7 @@ import { hasRole } from "main/utils/currentUser";
 //     }
 // }
 
-export default function DiningCommonsMenuItemsTable({ diningCommonsMenuItems, currentUser }) {
+export default function DiningCommonsMenuItemTable({ diningCommonsMenuItem, currentUser }) {
 
     // const navigate = useNavigate();
 
@@ -64,8 +64,8 @@ export default function DiningCommonsMenuItemsTable({ diningCommonsMenuItems, cu
     const columnsToDisplay =  columns;
 
     return <OurTable
-        data={diningCommonsMenuItems}
+        data={diningCommonsMenuItem}
         columns={columnsToDisplay}
-        testid={DiningCommonsMenuItemsTable}
+        testid={DiningCommonsMenuItemTable}
     />;
 };
