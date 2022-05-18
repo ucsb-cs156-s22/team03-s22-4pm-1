@@ -1,4 +1,4 @@
-import OurTabl from "main/components/OurTable";
+import OurTable from "main/components/OurTable";
 //import { useBackendMutation } from "main/utils/useBackend";
 //import {  onDeleteSuccess } from "main/utils/UCSBDateUtils"
 // import { useNavigate } from "react-router-dom";
@@ -53,7 +53,7 @@ export default function DiningCommonsMenuItemTable({ diningCommonsMenuItem, _cur
         }    
     ];
 
-    //const testid = "DiningCommonsTable";
+    const testid = "DiningCommonsMenuItemTable";
 
     // const columnsIfAdmin = [
     //     ...columns,
@@ -66,6 +66,6 @@ export default function DiningCommonsMenuItemTable({ diningCommonsMenuItem, _cur
     return <OurTable
         data={diningCommonsMenuItem}
         columns={columnsToDisplay}
-        testid={DiningCommonsMenuItemTable}
+        testid={testid}
     />;
 };
