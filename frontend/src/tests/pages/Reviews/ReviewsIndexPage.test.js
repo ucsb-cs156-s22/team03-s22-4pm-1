@@ -1,4 +1,4 @@
-import { _fireEvent, render, waitFor } from "@testing-library/react";
+import { fireEvent, render, waitFor } from "@testing-library/react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
 import ReviewsIndexPage from "main/pages/Reviews/ReviewsIndexPage";
@@ -140,13 +140,13 @@ describe("UCSBDatesIndexPage tests", () => {
 
         expect(queryByTestId(`${testId}-cell-row-0-col-code`)).not.toBeInTheDocument();
     });
-/*
+
     test("test what happens when you click delete, admin", async () => {
         setupAdminUser();
 
         const queryClient = new QueryClient();
-        axiosMock.onGet("/api/MenuItemReview/all").reply(200, reviewsFixtures.threeCommons);
-        axiosMock.onDelete("/api/MenuItemReview", {params: {code: "de-la-guerra"}}).reply(200, "Reviews with id de-la-guerra was deleted");
+        axiosMock.onGet("/api/MenuItemReview/all").reply(200, reviewsFixtures.threeReviews);
+        axiosMock.onDelete("/api/MenuItemReview", {params: {id: 1}}).reply(200, "Reviews with id 1 was deleted");
 
 
         const { getByTestId } = render(
@@ -157,9 +157,9 @@ describe("UCSBDatesIndexPage tests", () => {
             </QueryClientProvider>
         );
 
-        await waitFor(() => { expect(getByTestId(`${testId}-cell-row-0-col-code`)).toBeInTheDocument(); });
+        await waitFor(() => { expect(getByTestId(`${testId}-cell-row-0-col-id`)).toBeInTheDocument(); });
 
-       expect(getByTestId(`${testId}-cell-row-0-col-code`)).toHaveTextContent("de-la-guerra"); 
+        expect(getByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent("1"); 
 
 
         const deleteButton = getByTestId(`${testId}-cell-row-0-col-Delete-button`);
@@ -167,8 +167,8 @@ describe("UCSBDatesIndexPage tests", () => {
        
         fireEvent.click(deleteButton);
 
-        await waitFor(() => { expect(mockToast).toBeCalledWith("Reviews with id de-la-guerra was deleted") });
+        await waitFor(() => { expect(mockToast).toBeCalledWith("Reviews with id 1 was deleted") });
 
-    });*/
+    });
 
 });
