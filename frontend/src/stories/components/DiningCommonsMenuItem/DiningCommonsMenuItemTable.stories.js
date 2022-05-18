@@ -23,7 +23,7 @@ Empty.args = {
 export const ThreeDiningCommonsMenuItem = Template.bind({});
 
 ThreeDiningCommonsMenuItem.args = {
-    diningCommonsMenuItem: diningCommonsMenuItemFixtures.ThreeDiningCommonsMenuItem
+    diningCommonsMenuItem: diningCommonsMenuItemFixtures.threeDiningCommonsMenuItem
 };
 
 
