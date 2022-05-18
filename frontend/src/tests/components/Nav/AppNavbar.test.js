@@ -348,6 +348,7 @@ describe("AppNavbar tests", () => {
         await waitFor( () => expect(getByTestId(/appnavbar-article-list/)).toBeInTheDocument() );
 
     });
+
     test("renders the diningcommonsmenuitem menu correctly for an admin", async () => {
 
         const currentUser = currentUserFixtures.adminUser;
