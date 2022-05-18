@@ -57,13 +57,6 @@ export default function AppNavbar({ currentUser, systemInfo, doLogout, currentUr
               }
               {
                 hasRole(currentUser, "ROLE_USER") && (
-                  <NavDropdown title="Dining Commons Menu Item" id="appnavbar-dining-commons-menu-item-dropdown" data-testid="appnavbar-dining-commons-menu-item-dropdown" >
-                    <NavDropdown.Item as={Link} to="/diningCommonsMenuItem/list" data-testid ="appnavbar-dining-commons-menu-item-list">List Dining Commons Menu Item</NavDropdown.Item>
-                  </NavDropdown>
-                )
-              }
-               {
-                hasRole(currentUser, "ROLE_USER") && (
                   <NavDropdown title="UCSB Dining Commons" id="appnavbar-dining-commons-dropdown" data-testid="appnavbar-dining-commons-dropdown" >
                     <NavDropdown.Item as={Link} to="/diningCommons/list" data-testid="appnavbar-dining-commons-list">List Dining Commons</NavDropdown.Item>
                   </NavDropdown>
@@ -78,6 +71,29 @@ export default function AppNavbar({ currentUser, systemInfo, doLogout, currentUr
                         <NavDropdown.Item as={Link} to="/ucsbdates/create" data-testid="appnavbar-ucsbdates-create">Create</NavDropdown.Item>
                       )
                     }
+                  </NavDropdown>
+                )
+              }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              {
+                hasRole(currentUser, "ROLE_USER") && (
+                  <NavDropdown title="Dining Commons Menu Item" id="appnavbar-dining-commons-menu-item-dropdown" data-testid="appnavbar-dining-commons-menu-item-dropdown" >
+                    <NavDropdown.Item as={Link} to="/diningCommonsMenuItem/list" data-testid ="appnavbar-dining-commons-menu-item-list">List Dining Commons Menu Item</NavDropdown.Item>
                   </NavDropdown>
                 )
               }
