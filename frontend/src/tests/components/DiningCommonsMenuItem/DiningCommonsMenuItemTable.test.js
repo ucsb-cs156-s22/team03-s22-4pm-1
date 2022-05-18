@@ -71,8 +71,9 @@ describe("DiningCommonsMenuItemTable tests", () => {
 
     const expectedHeaders = ['DiningCommonsCode',  'ID', 'Name','Station'];
     const expectedFields = ['diningCommonsCode',  'id', 'name','station'];
-    const testId = "DiningCommonsTable";
+    const testId = "DiningCommonsMenuItemTable";
 
+    
     expectedHeaders.forEach((headerText) => {
       const header = getByText(headerText);
       expect(header).toBeInTheDocument();
@@ -120,4 +121,3 @@ describe("DiningCommonsMenuItemTable tests", () => {
   // });
 
 });
-
