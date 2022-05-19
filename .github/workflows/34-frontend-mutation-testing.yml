@@ -25,5 +25,5 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm ci
         working-directory: ./frontend
-      - run: npx stryker run
+      - run: npx stryker run --timeoutFactor 1.1
         working-directory: ./frontend
