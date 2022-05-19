@@ -1,9 +1,9 @@
-import {  render } from "@testing-library/react";
-import { articleFixtures } from "fixtures/articleFixtures";
+import { _fireEvent, render, _waitFor } from "@testing-library/react";
+import { helpRequestFixtures } from "fixtures/helpRequestFixtures";
+import HelpRequestTable from "main/components/HelpRequest/HelpRequestTable"
 import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
 import { currentUserFixtures } from "fixtures/currentUserFixtures";
-import ArticleTable from "main/components/Article/ArticleTable";
 
 
 const mockedNavigate = jest.fn();
@@ -13,7 +13,7 @@ jest.mock('react-router-dom', () => ({
     useNavigate: () => mockedNavigate
 }));
 
-describe("Article tests", () => {
+describe("HelpRequestTable tests", () => {
   const queryClient = new QueryClient();
 
 
@@ -23,7 +23,7 @@ describe("Article tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <ArticleTable article={[]} currentUser={currentUser} />
+          <HelpRequestTable helpRequest={[]} currentUser={currentUser} />
         </MemoryRouter>
       </QueryClientProvider>
 
@@ -35,7 +35,7 @@ describe("Article tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <ArticleTable article={[]} currentUser={currentUser} />
+          <HelpRequestTable helpRequest={[]} currentUser={currentUser} />
         </MemoryRouter>
       </QueryClientProvider>
 
@@ -48,7 +48,7 @@ describe("Article tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <ArticleTable article={[]} currentUser={currentUser} />
+          <HelpRequestTable helpRequest={[]} currentUser={currentUser} />
         </MemoryRouter>
       </QueryClientProvider>
 
@@ -62,16 +62,15 @@ describe("Article tests", () => {
     const { getByText, getByTestId } = render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <ArticleTable article={articleFixtures.threeArticles} currentUser={currentUser} />
+          <HelpRequestTable helpRequest={helpRequestFixtures.threeHelpRequest} currentUser={currentUser} />
         </MemoryRouter>
       </QueryClientProvider>
 
     );
 
-
-    const expectedHeaders = ["ID",  "Title", "URL","Explanation","Email","Date Added"];
-    const expectedFields = ["id", "title","url", "explanation","email","dateAdded"];
-    const testId = "ArticleTable";
+    const expectedHeaders = ["Id", "Requester Email", "Team Id", "Table Or Breakout Room Number", "Request Time", "Explanation", "Solved?"];
+    const expectedFields = ["id", "requesterEmail", "teamId", "tableOrBreakoutRoom", "requestTime", "explanation", "solved"];
+    const testId = "HelpRequestTable";
 
     expectedHeaders.forEach((headerText) => {
       const header = getByText(headerText);
@@ -85,6 +84,8 @@ describe("Article tests", () => {
 
     expect(getByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent("1");
     expect(getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent("2");
+    expect(getByTestId(`${testId}-cell-row-0-col-requesterEmail`)).toHaveTextContent("joeschmo@ucsb.edu");
+    expect(getByTestId(`${testId}-cell-row-1-col-requesterEmail`)).toHaveTextContent("coconut@ucsb.edu");
 
     // const editButton = getByTestId(`${testId}-cell-row-0-col-Edit-button`);
     // expect(editButton).toBeInTheDocument();
@@ -103,23 +104,22 @@ describe("Article tests", () => {
   //   const { getByTestId } = render(
   //     <QueryClientProvider client={queryClient}>
   //       <MemoryRouter>
-  //         <UCSBDatesTable diningCommons={ucsbDatesFixtures.threeDates} currentUser={currentUser} />
+  //         <HelpRequestTable helpRequest={helpRequestFixtures.threeHelpRequest} currentUser={currentUser} />
   //       </MemoryRouter>
   //     </QueryClientProvider>
 
   //   );
 
-  //   await waitFor(() => { expect(getByTestId(`UCSBDatesTable-cell-row-0-col-id`)).toHaveTextContent("1"); });
+  //   await waitFor(() => { expect(getByTestId(`HelpRequestTable-cell-row-0-col-id`)).toHaveTextContent("1"); });
 
-  //   const editButton = getByTestId(`UCSBDatesTable-cell-row-0-col-Edit-button`);
+  //   const editButton = getByTestId(`HelpRequestTable-cell-row-0-col-Edit-button`);
   //   expect(editButton).toBeInTheDocument();
     
   //   fireEvent.click(editButton);
 
-  //   await waitFor(() => expect(mockedNavigate).toHaveBeenCalledWith('/ucsbdates/edit/1'));
+  //   await waitFor(() => expect(mockedNavigate).toHaveBeenCalledWith('/helprequest/edit/1'));
 
   // });
-
 
 });
 

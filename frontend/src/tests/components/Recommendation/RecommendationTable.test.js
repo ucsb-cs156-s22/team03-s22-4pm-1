@@ -1,9 +1,9 @@
 import {  render } from "@testing-library/react";
-import { articleFixtures } from "fixtures/articleFixtures";
+import { recommendationFixtures } from "fixtures/recommendationFixtures";
+import RecommendationTable from "main/components/Recommendation/RecommendationTable";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
 import { currentUserFixtures } from "fixtures/currentUserFixtures";
-import ArticleTable from "main/components/Article/ArticleTable";
 
 
 const mockedNavigate = jest.fn();
@@ -13,7 +13,7 @@ jest.mock('react-router-dom', () => ({
     useNavigate: () => mockedNavigate
 }));
 
-describe("Article tests", () => {
+describe("RecommendationTable tests", () => {
   const queryClient = new QueryClient();
 
 
@@ -23,7 +23,7 @@ describe("Article tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <ArticleTable article={[]} currentUser={currentUser} />
+          <RecommendationTable recommendation={[]} currentUser={currentUser} />
         </MemoryRouter>
       </QueryClientProvider>
 
@@ -35,7 +35,7 @@ describe("Article tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <ArticleTable article={[]} currentUser={currentUser} />
+          <RecommendationTable recommendation={[]} currentUser={currentUser} />
         </MemoryRouter>
       </QueryClientProvider>
 
@@ -48,7 +48,7 @@ describe("Article tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <ArticleTable article={[]} currentUser={currentUser} />
+          <RecommendationTable recommendation={[]} currentUser={currentUser} />
         </MemoryRouter>
       </QueryClientProvider>
 
@@ -62,16 +62,16 @@ describe("Article tests", () => {
     const { getByText, getByTestId } = render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <ArticleTable article={articleFixtures.threeArticles} currentUser={currentUser} />
+          <RecommendationTable recommendation={recommendationFixtures.threeRecommendations} currentUser={currentUser} />
         </MemoryRouter>
       </QueryClientProvider>
 
     );
 
 
-    const expectedHeaders = ["ID",  "Title", "URL","Explanation","Email","Date Added"];
-    const expectedFields = ["id", "title","url", "explanation","email","dateAdded"];
-    const testId = "ArticleTable";
+    const expectedHeaders = ['ID', 'Requester Email', 'Professor Email', 'Explanation', 'Date Requested', 'Needed by', 'Done?'];
+    const expectedFields = ['id', 'requesterEmail', 'professorEmail', 'explanation', 'dateRequested', 'dateNeeded', 'done'];
+    const testId = "RecommendationTable";
 
     expectedHeaders.forEach((headerText) => {
       const header = getByText(headerText);
@@ -83,16 +83,18 @@ describe("Article tests", () => {
       expect(header).toBeInTheDocument();
     });
 
-    expect(getByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent("1");
-    expect(getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent("2");
+    expect(getByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent("2");
+    expect(getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent("3");
+    expect(getByTestId(`${testId}-cell-row-0-col-requesterEmail`)).toHaveTextContent("ex2@gmail.com");
+    expect(getByTestId(`${testId}-cell-row-1-col-requesterEmail`)).toHaveTextContent("ex3@gmail.com");
 
     // const editButton = getByTestId(`${testId}-cell-row-0-col-Edit-button`);
     // expect(editButton).toBeInTheDocument();
     // expect(editButton).toHaveClass("btn-primary");
 
-    const deleteButton = getByTestId(`${testId}-cell-row-0-col-Delete-button`);
-    expect(deleteButton).toBeInTheDocument();
-    expect(deleteButton).toHaveClass("btn-danger");
+    // const deleteButton = getByTestId(`${testId}-cell-row-0-col-Delete-button`);
+    // expect(deleteButton).toBeInTheDocument();
+    // expect(deleteButton).toHaveClass("btn-danger");
 
   });
 
