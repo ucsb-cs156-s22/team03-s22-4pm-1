@@ -12,10 +12,7 @@ export default function UCSBOrganizationsIndexPage() {
   const {data: orgs, error: _error, status: _status} = 
     useBackend(
       // Stryker disable next-line all : don't test internal caching of React Query
-      ["/api/ucsborganizations/all"],
-            // Stryker disable next-line StringLiteral,ObjectLiteral : since "GET" is default, "" is an equivalent mutation
-            { method: "GET", url: "/api/ucsborganizations/all" },
-      []
+      ["/api/ucsborganizations/all"], { method: "GET", url: "/api/ucsborganizations/all" },[]
     );
   
   return (
