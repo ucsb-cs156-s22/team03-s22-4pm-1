@@ -7,6 +7,9 @@ import TodosIndexPage from "main/pages/Todos/TodosIndexPage";
 import TodosCreatePage from "main/pages/Todos/TodosCreatePage";
 import TodosEditPage from "main/pages/Todos/TodosEditPage";
 
+import HelpRequestIndexPage from "main/pages/HelpRequest/HelpRequestIndexPage";
+import ReviewsIndexPage from "main/pages/Reviews/ReviewsIndexPage";
+
 import DiningCommonsIndexPage from "main/pages/DiningCommons/DiningCommonsIndexPage";
 
 import DiningCommonsMenuItemIndexPage from "main/pages/DiningCommonsMenuItem/DiningCommonsMenuItemIndexPage";
@@ -15,6 +18,9 @@ import UCSBDatesIndexPage from "main/pages/UCSBDates/UCSBDatesIndexPage";
 import UCSBDatesCreatePage from "main/pages/UCSBDates/UCSBDatesCreatePage";
 import UCSBDatesEditPage from "main/pages/UCSBDates/UCSBDatesEditPage";
 
+import ArticleIndexPage from "main/pages/Article/ArticleIndexPage";
+
+import UCSBOrganizationsIndexPage from "main/pages/UCSBOrganizations/UCSBOrganizationsIndexPage";
 
 import { hasRole, useCurrentUser } from "main/utils/currentUser";
 
@@ -52,7 +58,35 @@ function App() {
         {
           hasRole(currentUser, "ROLE_USER") && (
             <>
+              <Route exact path="/helprequest/list" element={<HelpRequestIndexPage />} />
+            </>
+          )
+        }        
+        {
+          hasRole(currentUser, "ROLE_USER") && (
+            <>
+              <Route exact path="/ucsborganizations/list" element={<UCSBOrganizationsIndexPage />} />
+            </>
+          )
+        }
+        {
+          hasRole(currentUser, "ROLE_USER") && (
+            <>
+              <Route exact path="/reviews/list" element={<ReviewsIndexPage />} />
+            </>
+          )
+        }
+        {
+          hasRole(currentUser, "ROLE_USER") && (
+            <>
               <Route exact path="/diningCommons/list" element={<DiningCommonsIndexPage />} />
+            </>
+          )
+        }
+        {
+          hasRole(currentUser, "ROLE_USER") && (
+            <>
+              <Route exact path="/article/list" element={<ArticleIndexPage />} />
             </>
           )
         }
