@@ -76,7 +76,6 @@ export default function AppNavbar({ currentUser, systemInfo, doLogout, currentUr
                   </NavDropdown>
                 )
               }
-
               {
                 hasRole(currentUser, "ROLE_USER") && (
                   <NavDropdown title="Article" id="appnavbar-article-dropdown" data-testid="appnavbar-article-dropdown" >
