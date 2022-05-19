@@ -1,4 +1,4 @@
-import { render, waitFor } from "@testing-library/react";
+import { fireEvent, render, waitFor } from "@testing-library/react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
 import UCSBOrganizationsIndexPage from "main/pages/UCSBOrganizations/UCSBOrganizationsIndexPage";
@@ -130,6 +130,36 @@ describe("UCSBOrganizationsIndexPage tests", () => {
         restoreConsole();
 
         expect(queryByTestId(`${testId}-cell-row-0-col-code`)).not.toBeInTheDocument();
+    });
+
+    test("test what happens when you click delete, admin", async () => {
+        setupAdminUser();
+
+        const queryClient = new QueryClient();
+        axiosMock.onGet("/api/ucsborganizations/all").reply(200, organizationsFixtures.threeOrganizations);
+        axiosMock.onDelete("/api/ucsborganizations", {params: {orgCode: "AEP"}}).reply(200, "Organization with orgCode AEP was deleted");
+
+
+        const { getByTestId } = render(
+            <QueryClientProvider client={queryClient}>
+                <MemoryRouter>
+                    <UCSBOrganizationsIndexPage />
+                </MemoryRouter>
+            </QueryClientProvider>
+        );
+
+        await waitFor(() => { expect(getByTestId(`${testId}-cell-row-0-col-orgCode`)).toBeInTheDocument(); });
+
+        expect(getByTestId(`${testId}-cell-row-0-col-orgCode`)).toHaveTextContent("AEP"); 
+
+
+        const deleteButton = getByTestId(`${testId}-cell-row-0-col-Delete-button`);
+        expect(deleteButton).toBeInTheDocument();
+       
+        fireEvent.click(deleteButton);
+
+        await waitFor(() => { expect(mockToast).toBeCalledWith("Organization with orgCode AEP was deleted") });
+
     });
 
 });
