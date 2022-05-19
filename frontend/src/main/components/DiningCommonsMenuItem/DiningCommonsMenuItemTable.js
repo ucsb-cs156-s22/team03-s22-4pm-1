@@ -1,12 +1,13 @@
-import OurTable, { ButtonColumn } from "main/components/OurTable";
+import OurTable, {ButtonColumn} from "main/components/OurTable";
 import { useBackendMutation } from "main/utils/useBackend";
-import {  onDeleteSuccess  } from "main/utils/UCSBDateUtils"
+import {  onDeleteSuccess } from "main/utils/UCSBDateUtils"
 // import { useNavigate } from "react-router-dom";
 import { hasRole } from "main/utils/currentUser";
 
+
 export function cellToAxiosParamsDelete(cell) {
     return {
-        url: "/api/Recommendation",
+        url: "/api/ucsbdiningcommonsmenuitem",
         method: "DELETE",
         params: {
             id: cell.row.values.id
@@ -14,7 +15,7 @@ export function cellToAxiosParamsDelete(cell) {
     }
 }
 
-export default function RecommendationTable({ recommendation, currentUser }) {
+export default function DiningCommonsMenuItemTable({ diningCommonsMenuItem, currentUser }) {
 
     // const navigate = useNavigate();
 
@@ -26,7 +27,7 @@ export default function RecommendationTable({ recommendation, currentUser }) {
     const deleteMutation = useBackendMutation(
         cellToAxiosParamsDelete,
         { onSuccess: onDeleteSuccess },
-        ["/api/Recommendation/all"]
+        ["/api/ucsbdiningcommonsmenuitem/all"]
     );
     // Stryker enable all 
 
@@ -35,48 +36,35 @@ export default function RecommendationTable({ recommendation, currentUser }) {
 
     const columns = [
         {
+            Header: 'DiningCommonsCode',
+            accessor: 'diningCommonsCode', 
+        },
+        {
             Header: 'ID',
-            accessor: 'id', 
+            accessor: 'id',
         },
         {
-            Header: 'Requester Email',
-            accessor: 'requesterEmail',
+            Header: 'Name',
+            accessor: 'name',
         },
         {
-            Header: 'Professor Email',
-            accessor: 'professorEmail',
-        },
-        {
-            Header: 'Explanation',
-            accessor: 'explanation',
-        },
-        {
-            Header: 'Date Requested',
-            accessor: 'dateRequested',
-        },
-        {
-            Header: 'Needed by',
-            accessor: 'dateNeeded',
-        },
-        {
-            Header: 'Done?',
-            id: 'done', // needed for tests
-            accessor: (row, _rowIndex) => String(row.done) // hack needed for boolean values to show up
-        }
+            Header: 'Station',
+            accessor: 'station',
+        }    
     ];
 
-    const testid = "RecommendationTable";
+    const testid = "DiningCommonsMenuItemTable";
 
     const columnsIfAdmin = [
         ...columns,
-        // ButtonColumn("Edit", "primary", editCallback, testid),
+        //ButtonColumn("Edit", "primary", editCallback, testid),
         ButtonColumn("Delete", "danger", deleteCallback, testid)
     ];
 
     const columnsToDisplay = hasRole(currentUser, "ROLE_ADMIN") ? columnsIfAdmin : columns;
 
     return <OurTable
-        data={recommendation}
+        data={diningCommonsMenuItem}
         columns={columnsToDisplay}
         testid={testid}
     />;

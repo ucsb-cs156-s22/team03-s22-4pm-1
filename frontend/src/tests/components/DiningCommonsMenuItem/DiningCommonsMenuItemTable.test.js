@@ -1,6 +1,6 @@
 import {  render } from "@testing-library/react";
-import { recommendationFixtures } from "fixtures/recommendationFixtures";
-import RecommendationTable from "main/components/Recommendation/RecommendationTable";
+import { diningCommonsMenuItemFixtures } from "fixtures/diningCommonsMenuItemFixtures";
+import DiningCommonsMenuItemTable from "main/components/DiningCommonsMenuItem/DiningCommonsMenuItemTable";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { MemoryRouter } from "react-router-dom";
 import { currentUserFixtures } from "fixtures/currentUserFixtures";
@@ -13,7 +13,7 @@ jest.mock('react-router-dom', () => ({
     useNavigate: () => mockedNavigate
 }));
 
-describe("RecommendationTable tests", () => {
+describe("DiningCommonsMenuItemTable tests", () => {
   const queryClient = new QueryClient();
 
 
@@ -23,7 +23,7 @@ describe("RecommendationTable tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <RecommendationTable recommendation={[]} currentUser={currentUser} />
+          <DiningCommonsMenuItemTable diningCommonsMenuItem={[]} currentUser={currentUser} />
         </MemoryRouter>
       </QueryClientProvider>
 
@@ -35,7 +35,7 @@ describe("RecommendationTable tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <RecommendationTable recommendation={[]} currentUser={currentUser} />
+          <DiningCommonsMenuItemTable diningCommonsMenuItem={[]} currentUser={currentUser} />
         </MemoryRouter>
       </QueryClientProvider>
 
@@ -48,7 +48,7 @@ describe("RecommendationTable tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <RecommendationTable recommendation={[]} currentUser={currentUser} />
+          <DiningCommonsMenuItemTable diningCommonsMenuItem={[]} currentUser={currentUser} />
         </MemoryRouter>
       </QueryClientProvider>
 
@@ -62,17 +62,18 @@ describe("RecommendationTable tests", () => {
     const { getByText, getByTestId } = render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <RecommendationTable recommendation={recommendationFixtures.threeRecommendations} currentUser={currentUser} />
+          <DiningCommonsMenuItemTable diningCommonsMenuItem={diningCommonsMenuItemFixtures.threeDiningCommonsMenuItem} currentUser={currentUser} />
         </MemoryRouter>
       </QueryClientProvider>
 
     );
 
 
-    const expectedHeaders = ['ID', 'Requester Email', 'Professor Email', 'Explanation', 'Date Requested', 'Needed by', 'Done?'];
-    const expectedFields = ['id', 'requesterEmail', 'professorEmail', 'explanation', 'dateRequested', 'dateNeeded', 'done'];
-    const testId = "RecommendationTable";
+    const expectedHeaders = ['DiningCommonsCode',  'ID', 'Name','Station'];
+    const expectedFields = ['diningCommonsCode',  'id', 'name','station'];
+    const testId = "DiningCommonsMenuItemTable";
 
+    
     expectedHeaders.forEach((headerText) => {
       const header = getByText(headerText);
       expect(header).toBeInTheDocument();
@@ -83,10 +84,8 @@ describe("RecommendationTable tests", () => {
       expect(header).toBeInTheDocument();
     });
 
-    expect(getByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent("2");
-    expect(getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent("3");
-    expect(getByTestId(`${testId}-cell-row-0-col-requesterEmail`)).toHaveTextContent("ex2@gmail.com");
-    expect(getByTestId(`${testId}-cell-row-1-col-requesterEmail`)).toHaveTextContent("ex3@gmail.com");
+    expect(getByTestId(`${testId}-cell-row-0-col-id`)).toHaveTextContent("1");
+    expect(getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent("2");
 
     // const editButton = getByTestId(`${testId}-cell-row-0-col-Edit-button`);
     // expect(editButton).toBeInTheDocument();
@@ -95,7 +94,6 @@ describe("RecommendationTable tests", () => {
     const deleteButton = getByTestId(`${testId}-cell-row-0-col-Delete-button`);
     expect(deleteButton).toBeInTheDocument();
     expect(deleteButton).toHaveClass("btn-danger");
-
   });
 
   // test("Edit button navigates to the edit page for admin user", async () => {
@@ -105,7 +103,7 @@ describe("RecommendationTable tests", () => {
   //   const { getByTestId } = render(
   //     <QueryClientProvider client={queryClient}>
   //       <MemoryRouter>
-  //         <UCSBDatesTable diningCommons={ucsbDatesFixtures.threeDates} currentUser={currentUser} />
+  //         <UCSBDatesTable dates={ucsbDatesFixtures.threeDates} currentUser={currentUser} />
   //       </MemoryRouter>
   //     </QueryClientProvider>
 
@@ -122,6 +120,4 @@ describe("RecommendationTable tests", () => {
 
   // });
 
-
 });
-
