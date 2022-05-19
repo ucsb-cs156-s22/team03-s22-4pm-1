@@ -145,7 +145,6 @@ describe("RecommendationIndexPage tests", () => {
         axiosMock.onGet("/api/Recommendation/all").reply(200, recommendationFixtures.threeRecommendations);
         axiosMock.onDelete("/api/Recommendation", {params: {id: 2}}).reply(200, "Recommendation with id 2 deleted");
 
-
         const { getByTestId } = render(
             <QueryClientProvider client={queryClient}>
                 <MemoryRouter>
