@@ -110,6 +110,13 @@ export default function AppNavbar({ currentUser, systemInfo, doLogout, currentUr
                   </NavDropdown>
                 )
               }
+              {
+                hasRole(currentUser, "ROLE_USER") && (
+                  <NavDropdown title="Dining Commons Menu Item" id="appnavbar-dining-commons-menu-item-dropdown" data-testid="appnavbar-dining-commons-menu-item-dropdown" >
+                    <NavDropdown.Item as={Link} to="/diningCommonsMenuItem/list" data-testid ="appnavbar-dining-commons-menu-item-list">List Dining Commons Menu Item</NavDropdown.Item>
+                  </NavDropdown>
+                )
+              }
             </Nav>
 
             <Nav className="ml-auto">
@@ -131,4 +138,5 @@ export default function AppNavbar({ currentUser, systemInfo, doLogout, currentUr
     </>
   );
 }
+
 
