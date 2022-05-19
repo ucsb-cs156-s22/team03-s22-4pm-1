@@ -256,8 +256,8 @@ describe("AppNavbar tests", () => {
     });
 
     test("renders the organizations menu correctly for an admin", async () => {
-        
-      const currentUser = currentUserFixtures.adminUser;
+
+        const currentUser = currentUserFixtures.adminUser;
         const systemInfo = systemInfoFixtures.showingBoth;
 
         const doLogin = jest.fn();
@@ -276,6 +276,7 @@ describe("AppNavbar tests", () => {
         expect(aElement).toBeInTheDocument();
         aElement?.click();
         await waitFor( () => expect(getByTestId(/appnavbar-ucsborganizations-list/)).toBeInTheDocument() );
+
     });
 
     test("renders the reviews menu correctly for an admin", async () => {
@@ -374,3 +375,4 @@ describe("AppNavbar tests", () => {
     });
 
 });
+
