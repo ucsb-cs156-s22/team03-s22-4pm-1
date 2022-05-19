@@ -373,6 +373,5 @@ describe("AppNavbar tests", () => {
         await waitFor( () => expect(getByTestId(/appnavbar-dining-commons-menu-item-list/)).toBeInTheDocument() );
 
     });
-
 });
 
